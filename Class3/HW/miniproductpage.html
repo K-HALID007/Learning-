@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Product Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white text-gray-800 font-sans">
+    <div class="max-w-4xl mx-auto p-6 grid md:grid-cols-2 gap-6">
+      <!-- Product Image -->
+      <div class="flex items-center justify-center">
+        <img
+          src="s.jpg"
+          alt="Product"
+          class="rounded shadow transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+          id="mainImage"
+        />
+      </div>
+
+      <!-- Product Info -->
+      <div>
+        <h1 id="productName" class="text-2xl font-bold mb-2">Cool Sneakers</h1>
+        <p id="shortDesc" class="text-gray-600 mb-2">
+          Step up your everyday style with the <strong>Cool Sneakers</strong> –
+          a perfect blend of comfort and modern design.
+        </p>
+        <p id="fullDesc" class="text-gray-600 mb-4 hidden">
+          These sneakers are crafted with breathable materials, cushioned
+          insoles, and a flexible sole to support your feet all day long.
+          Whether you're heading out for a walk or a casual hangout, these shoes
+          will keep you looking sharp and feeling great.
+        </p>
+        <button
+          onclick="toggleDescription()"
+          class="text-blue-600 underline text-sm focus:outline-none"
+        >
+          Read More
+        </button>
+
+        <p id="price" class="text-xl font-semibold mb-4">$89.99</p>
+
+        <!-- UK Size Selection -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1"
+            >UK Size</label
+          >
+          <select
+            class="border border-gray-300 rounded px-3 py-2 w-full focus:ring-2 focus:ring-black hover:scale-105"
+            onchange="updatePrice()"
+          >
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+
+        <!-- Color Options -->
+        <div class="flex gap-2">
+          <span
+            class="color-option w-6 h-6 rounded-full bg-blue-500 cursor-pointer hover:scale-110 transition-transform ring-2 ring-yellow-400"
+            onclick="selectColor(this)"
+            data-color="blue"
+            onmouseenter="previewColor(this)"
+            onmouseleave="resetPreview()"
+          ></span>
+          <span
+            class="color-option w-6 h-6 rounded-full bg-red-500 cursor-pointer hover:scale-110 transition-transform"
+            onclick="selectColor(this)"
+            data-color="red"
+            onmouseenter="previewColor(this)"
+            onmouseleave="resetPreview()"
+          ></span>
+          <span
+            class="color-option w-6 h-6 rounded-full bg-black cursor-pointer hover:scale-110 transition-transform"
+            onclick="selectColor(this)"
+            data-color="black"
+            onmouseenter="previewColor(this)"
+            onmouseleave="resetPreview()"
+          ></span>
+        </div>
+
+        <div id="thumbnails" class="flex gap-2 mt-2">
+          <img
+            src="s.jpg"
+            onclick="changeImage('s.jpg')"
+            class="thumbnail w-16 h-16 object-cover rounded cursor-pointer border-2 border-yellow-400"
+          />
+        </div>
+
+        <!-- Product Details -->
+        <div class="mt-6">
+          <h2 class="text-lg font-semibold mb-2">Product Details</h2>
+          <ul class="list-inside list-disc text-gray-600">
+            <li><strong>Material Type:</strong> Textile</li>
+            <li><strong>Closure Type:</strong> Lace-Up</li>
+            <li><strong>Heel Type:</strong> Flat</li>
+            <li>
+              <strong>Water Resistance Level:</strong> Not Water Resistant
+            </li>
+            <li><strong>Sole Material:</strong> Polyurethane, Rubber</li>
+            <li><strong>Style:</strong> Running</li>
+            <li><strong>Country of Origin:</strong> India</li>
+          </ul>
+        </div>
+        <br />
+
+        <button
+          class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 hover:scale-105 active:scale-95 cursor-pointer"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let currentColorOption = null;
+      let selectedProductName = "";
+
+      const colorImageMap = {
+        blue: ["s.jpg", "s10.jpg"],
+        red: ["s2.png", "s3.png", "s4.png", "s5.png"],
+        black: ["s6.png", "s7.png", "s8.png", "s9.png"],
+      };
+
+      const productDetailsMap = {
+        blue: {
+          material: "Mesh & Fabric",
+          closure: "Slip-On",
+          heel: "Flat",
+          water: "Water Resistant",
+          sole: "EVA + Rubber",
+          style: "Walking",
+          origin: "India",
+        },
+        red: {
+          material: "Synthetic Leather",
+          closure: "Lace-Up",
+          heel: "Raised",
+          water: "Not Water Resistant",
+          sole: "Rubber",
+          style: "Running",
+          origin: "Vietnam",
+        },
+        black: {
+          material: "Knitted Textile",
+          closure: "Velcro",
+          heel: "Flat",
+          water: "Slightly Water Resistant",
+          sole: "Polyurethane",
+          style: "Training",
+          origin: "India",
+        },
+      };
+
+      let selectedColor = "blue";
+
+      function changeImage(src) {
+        document.getElementById("mainImage").src = src;
+        const thumbnails = document.querySelectorAll(".thumbnail");
+        thumbnails.forEach((thumb) => {
+          thumb.classList.remove("border-2", "border-yellow-400");
+        });
+        const selected = Array.from(thumbnails).find((t) =>
+          t.src.includes(src)
+        );
+        if (selected) selected.classList.add("border-2", "border-yellow-400");
+      }
+
+      function selectColor(selectedElement) {
+        selectedColor = selectedElement.getAttribute("data-color");
+
+        document
+          .querySelectorAll(".color-option")
+          .forEach((option) =>
+            option.classList.remove("ring-2", "ring-yellow-400")
+          );
+        selectedElement.classList.add("ring-2", "ring-yellow-400");
+
+        const color = selectedColor;
+        const productName = document.getElementById("productName");
+        const details = productDetailsMap[color];
+        const detailsList = document.querySelector(".list-disc");
+
+        switch (color) {
+          case "blue":
+            productName.textContent = "Cool Blue Sneakers";
+            break;
+          case "red":
+            productName.textContent = "Fiery Red Sneakers";
+            break;
+          case "black":
+            productName.textContent = "Classic Black Sneakers";
+            break;
+        }
+        productName.textContent = selectedProductName;
+        detailsList.innerHTML = `
+          <li><strong>Material Type:</strong> ${details.material}</li>
+          <li><strong>Closure Type:</strong> ${details.closure}</li>
+          <li><strong>Heel Type:</strong> ${details.heel}</li>
+          <li><strong>Water Resistance Level:</strong> ${details.water}</li>
+          <li><strong>Sole Material:</strong> ${details.sole}</li>
+          <li><strong>Style:</strong> ${details.style}</li>
+          <li><strong>Country of Origin:</strong> ${details.origin}</li>
+        `;
+
+        const images = colorImageMap[color];
+        document.getElementById("mainImage").src = images[0];
+
+        const thumbnailsContainer = document.getElementById("thumbnails");
+        thumbnailsContainer.innerHTML = "";
+        images.forEach((imgSrc, index) => {
+          const img = document.createElement("img");
+          img.src = imgSrc;
+          img.className =
+            "thumbnail w-16 h-16 object-cover rounded cursor-pointer " +
+            (index === 0
+              ? "border-2 border-yellow-400"
+              : "hover:border-2 hover:border-yellow-400");
+          img.onmouseenter = () => changeImage(imgSrc);
+          thumbnailsContainer.appendChild(img);
+        });
+      }
+
+      function previewColor(element) {
+        const color = element.getAttribute("data-color");
+        const images = colorImageMap[color];
+        const productName = document.getElementById("productName");
+
+        // Temporarily update main image and product name
+        document.getElementById("mainImage").src = images[0];
+        switch (color) {
+          case "blue":
+            productName.textContent = "Cool Blue Sneakers";
+            break;
+          case "red":
+            productName.textContent = "Fiery Red Sneakers";
+            break;
+          case "black":
+            productName.textContent = "Classic Black Sneakers";
+            break;
+        }
+
+        // Add yellow ring to hovered color
+        element.classList.add("ring-2", "ring-yellow-400");
+
+        const thumbnailsContainer = document.getElementById("thumbnails");
+        thumbnailsContainer.innerHTML = "";
+        images.forEach((imgSrc, index) => {
+          const img = document.createElement("img");
+          img.src = imgSrc;
+          img.className =
+            "thumbnail w-16 h-16 object-cover rounded cursor-pointer " +
+            (index === 0
+              ? "border-2 border-yellow-400"
+              : "hover:border-2 hover:border-yellow-400");
+          img.onmouseenter = () => changeImage(imgSrc);
+          thumbnailsContainer.appendChild(img);
+        });
+      }
+
+      function resetPreview() {
+        const images = colorImageMap[selectedColor];
+        const productName = document.getElementById("productName");
+
+        // Restore the selected main image
+        document.getElementById("mainImage").src = images[0];
+
+        // Restore product name
+        switch (selectedColor) {
+          case "blue":
+            productName.textContent = "Cool Blue Sneakers";
+            break;
+          case "red":
+            productName.textContent = "Fiery Red Sneakers";
+            break;
+          case "black":
+            productName.textContent = "Classic Black Sneakers";
+            break;
+            // Restore product name
+            const productName = document.getElementById("productName");
+            productName.textContent = selectedProductName;
+        }
+
+        // Remove yellow rings from all
+        document
+          .querySelectorAll(".color-option")
+          .forEach((option) =>
+            option.classList.remove("ring-2", "ring-yellow-400")
+          );
+
+        // Re-apply ring to the selected color only
+        if (currentColorOption) {
+          currentColorOption.classList.add("ring-2", "ring-yellow-400");
+        }
+      }
+
+      function toggleDescription() {
+        const shortDesc = document.getElementById("shortDesc");
+        const fullDesc = document.getElementById("fullDesc");
+        const button = event.target;
+        if (fullDesc.classList.contains("hidden")) {
+          fullDesc.classList.remove("hidden");
+          button.textContent = "Read Less";
+        } else {
+          fullDesc.classList.add("hidden");
+          button.textContent = "Read More";
+        }
+      }
+
+      function updatePrice() {
+        const size = document.querySelector("select").value;
+        const priceElement = document.getElementById("price");
+        const prices = {
+          6: "$89.99",
+          7: "$94.99",
+          8: "$99.99",
+          9: "$104.99",
+          10: "$109.99",
+        };
+        priceElement.innerText = prices[size] || "$89.99";
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const defaultColor = "blue";
+        const defaultColorOption = document.querySelector(
+          `.color-option[data-color="${defaultColor}"]`
+        );
+        selectColor(defaultColorOption);
+      });
+    </script>
+  </body>
+</html>

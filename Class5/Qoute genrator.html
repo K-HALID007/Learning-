@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body
+    class="bg-purple-100 flex flex-wrap items-center justify-center h-screen gap-6 p-2"
+  >
+    <div class="bg-blue-700 p-6 rounded-xl shadow-xl text-center max-w-md">
+      <h2 class="text-xl font-bold mb-4 text-white">Random Qoute</h2>
+      <p id="quote" class="text-white italic mb-4">
+        click the button to get inspired!
+      </p>
+      <button
+        onclick="newQuote()"
+        class="bg-green-400 text-white px-4 py-2 rounded hover:bg-black transition"
+      >
+        NEW BUTTON
+      </button>
+    </div>
+
+    <div class="bg-black p-6 rounded-xl shadow-xl text-center max-w-md">
+      <h2 class="text-xl font-bold mb-4 text-purple-700">Random Qoute</h2>
+      <p id="quote1" class="text-white italic mb-4">
+        click the button to get inspired!
+      </p>
+      <button
+        onclick="newQuote1()"
+        class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition"
+      >
+        NEW BUTTON
+      </button>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow-xl text-center max-w-md">
+      <h2 class="text-xl font-bold mb-4 text-purple-700">Random Qoute</h2>
+      <p id="quote2" class="text-gray-700 italic mb-4">
+        click the button to get inspired!
+      </p>
+      <button
+        onclick="newQuote2()"
+        class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition"
+      >
+        NEW BUTTON
+      </button>
+    </div>
+
+    <script>
+      const Quote = [
+        "BELIVE IN YOURSELEF.",
+        "YOU ARE STRONGER THAN YOU THINK. ",
+        "EVERY DAY IS A NEW BEGINNING",
+        "DO WHAT MAKES YOUR SOLE SHINE",
+        "PUSH YOUR SELF. NO ONE WILL HELP YOU ",
+      ];
+
+      const Quote1 = [
+        "The function of leadership is to produce more leaders, not more followers.",
+        "A leader is one who knows the way, goes the way, and shows the way. ",
+        "Leadership is not about being in charge. It is about taking care of those in your charge.",
+        "Don’t watch the clock do what it does. Keep going",
+        "PUSH YOUR SELF. NO ONE WILL HELP YOU ",
+      ];
+      const Quote2 = [
+        "It does not matter how slowly you go as long as you do not stop.",
+        "Success is not final, failure is not fatal: It is the courage to continue that counts. ",
+        "Perseverance is not a long race; it is many short races one after the other",
+        "Fall seven times, stand up eight",
+        "Creativity is intelligence having fun. ",
+      ];
+      function newQuote() {
+        const random = Quote[Math.floor(Math.random() * Quote.length)];
+        document.getElementById("quote").textContent = random;
+      }
+      function newQuote1() {
+        const random = Quote1[Math.floor(Math.random() * Quote.length)];
+        document.getElementById("quote1").textContent = random;
+      }
+      function newQuote2() {
+        const random = Quote2[Math.floor(Math.random() * Quote.length)];
+        document.getElementById("quote2").textContent = random;
+      }
+    </script>
+  </body>
+</html>

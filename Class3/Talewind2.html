@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-gray-100 text-gray-800 font-sans">
+    <img
+      src="k.jpg"
+      alt="Curved"
+      class="absolute top-4 left-4 w-40 h-40 rounded-full shadow-lg object-cover mt-20"
+    />
+
+    <header class="bg-white shadow p-4 flex justify-between item-center">
+      <h1 class="text-xl font-bold">Khalid Shaikh</h1>
+      <nav class="space-x-4">
+        <a href="#Projects" class="hover:text-blue-500">Projects</a>
+        <a href="#Projects" class="hover:text-blue-500">Contact</a>
+      </nav>
+    </header>
+    <section
+      class="text-center py-16 bg-gradient-to-r from-blue-100 to purple-100"
+    >
+      <h2 class="text-3xl font-bold mb-4">Hi,I'M Khalid</h2>
+      <p class="text-lg">
+        A web developer passionate about clean UI and fast website.
+      </p>
+    </section>
+    <!--Projects-->
+
+    <section id="Projects" class="text-2xl font-semibold mb-6">
+      <h3 class="text-2xl font-semibold mb-6">Projects</h3>
+      <div class="grid md:grid-cols-3 gap4">
+        <div class="bg-white p-4 rounded shadow">Portfolio Website</div>
+        <div class="bg-white p-4 rounded shadow">Landing Page</div>
+        <div class="bg-white p-4 rounded shadow">Dashboard UI</div>
+      </div>
+    </section>
+    <!--Contact-->
+    <section id="Contact" class="p-8 bg-white">
+      <h3 class="text-2xl font-semibold mb-4">Contact</h3>
+      <form class="space-y-4 max-w-md">
+        <input
+          type="text"
+          placeholder="Name"
+          class="w-full p-2 border rounded"
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          class="w-full p-2 border rounded"
+        />
+        <textarea
+          placeholder="Message"
+          class="w-full p-2 border rounded"
+        ></textarea>
+        <button
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Send
+        </button>
+      </form>
+    </section>
+    <!--footer-->
+    <footer class="text-center p-4 text-sm text-gray-500">
+      &copy;2025 Khalid Shaikh.All right reserved
+    </footer>
+  </body>
+</html>

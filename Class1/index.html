@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>My Division</title>
+    <style>
+      .container {
+        border: 2px solid black;
+        padding: 20px;
+        margin: 10px;
+      }
+      .red-box {
+        background-color: red;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .blue-box {
+        background-color: blue;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text-xl font-medium text-black dark:text-white">
+      <div class="red-box">
+        <h2>Red Box</h2>
+        <p class="text-black dark:text-black">
+          This is a red box. inside the container
+        </p>
+      </div>
+      <div class="blue-box">
+        <h2>Blue Box</h2>
+        <p class="text-gray-500 dark:text-gray-400">
+          This is a blue box. inside the container
+        </p>
+      </div>
+    </div>
+
+    <div class="flex justify-center mb-4">
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <div class="flex justify-center">
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <br />
+    <div style="text-align: center">
+      <button
+        class="bg-violet-500 hover:bg-violet-600 focus:outline-2 focus:outline-offset-2 focus:outline-violet-500 active:bg-violet-700 rounded-lg text-white px-4 py-2"
+      >
+        Submit
+      </button>
+    </div>
+    <br />
+    <div style="text-align: center">
+      <a href="Forget Password.html">Forget Password</a>
+    </div>
+    <div style="text-align: center">
+      <a href="Contact us .html">Contact us </a>
+    </div>
+
+    <ol type="a">
+      <li>Khalid</li>
+      <li>Junaid</li>
+      <li>Ammar</li>
+    </ol>
+    <ul>
+      <li>Man</li>
+      <li>Women</li>
+      <li>Qualification</li>
+    </ul>
+  </body>
+</html>
