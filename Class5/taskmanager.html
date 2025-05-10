@@ -6,8 +6,8 @@
     <title>TASK MANAGER</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-  <body class="flex item-center justify-center min-h-screen bg-gray-100">
-    <div class="bg-white p-4 rounded shadow w-full max-w-md">
+  <body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="bg-blue-400 p-4 rounded shadow w-full max-w-md">
       <h1 class="text-xl font-bold mb-4 text-center">TASK MANAGER</h1>
       <div class="flex mb-3">
         <input
@@ -23,7 +23,30 @@
           ADD
         </button>
       </div>
-      <ul id=""></ul>
+      <ul id="tasklist" class="space-y-2"></ul>
     </div>
+    <script>
+      const TaskInput = document.getElementById("TaskInput");
+      const addBtn = document.getElementById("addBtn");
+      const tasklist = document.getElementById("tasklist");
+      addBtn.addEventListener("click", () => {
+        const text = taskInput.value.trim();
+        if (text === "") return;
+        const li = document.createElement("li");
+        li.className =
+          "flex justify-between item-center bg-gray-200 px-3 py-2 rounded";
+        const span = document.createElement("span");
+
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "X";
+        delBtn.className = "text-red-500 font-bold hover:text-red-700";
+        li.append(span, delBtn);
+        tasklist.appendChild("li");
+      });
+      // Optional add task by pressing "enter"
+      taskInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") addBtn.click();
+      });
+    </script>
   </body>
 </html>
